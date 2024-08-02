@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -11,14 +8,14 @@ const GroupList = () => {
   const [newGroup, setNewGroup] = useState({ name: '', color: '#FFFFFF' });
 
   useEffect(() => {
-    axios.get('http://localhost:8000/groups')
+    axios.get('https://notepad-server-or7h.onrender.com/groups')
       .then(response => setGroups(response.data))
       .catch(error => console.error(error));
   }, []);
 
   const createGroup = () => {
     if (newGroup.name.trim()) {
-      axios.post('http://localhost:8000/groups', newGroup)
+      axios.post('https://notepad-server-or7h.onrender.com/groups', newGroup)
         .then(response => {
           setGroups([...groups, response.data]);
           setShowModal(false);
@@ -50,13 +47,13 @@ const GroupList = () => {
         ))}
       </div>
 
-    <div className=' flex justify-end'>
-    <button
-        onClick={() => setShowModal(true)}
-        className="bg-blue-500 text-white rounded-full w-14 h-14 ">
-        +
-      </button>
-    </div>
+      <div className='flex justify-end'>
+        <button
+          onClick={() => setShowModal(true)}
+          className="bg-blue-500 text-white rounded-full w-14 h-14">
+          +
+        </button>
+      </div>
 
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={() => setShowModal(false)}>
@@ -99,5 +96,3 @@ const GroupList = () => {
 };
 
 export default GroupList;
-
-

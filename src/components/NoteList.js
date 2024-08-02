@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -11,14 +8,14 @@ const NoteList = () => {
   const [newNote, setNewNote] = useState('');
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/notes/${groupId}`)
+    axios.get(`https://notepad-server-or7h.onrender.com/notes/${groupId}`)
       .then(response => setNotes(response.data))
       .catch(error => console.error(error));
   }, [groupId]);
 
   const addNote = () => {
     if (newNote.trim()) {
-      axios.post('http://localhost:8000/notes', { content: newNote, groupId })
+      axios.post('https://notepad-server-or7h.onrender.com/notes', { content: newNote, groupId })
         .then(response => {
           setNotes([...notes, response.data]);
           setNewNote('');
@@ -62,21 +59,3 @@ const NoteList = () => {
 };
 
 export default NoteList;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
